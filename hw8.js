@@ -98,3 +98,15 @@ console.log(ArrUs7);
 // Взяти масив (Client [] з попереднього завдання).
 //Відсортувати його по кількості товарів в полі order по зростанню. (sort)
 
+let ArrUs8 = [
+    new client (8, `petro`,`iv`, 45, 093, ['fgfdgdf','fgg','fgfdfgfgdfg','gfg', 'gfg','fgfg']),
+new client (5, `ivan`,`ivod`, 345, 098, [`fdsfffff`,`ghgh`,`ghghgjhgjh`,`fgf`,`sdf`]),
+new client (2, `petro`,`iv`, 345, 097, [`fdsfffgbg`,`th`,`fggg`]),
+new client (4, `stepan`,`iv`, 345, 096, [`fdsfgtfg`, `bn`,`bhuggfg`]),
+new client (7, `petro`,`iv`, 345, 099, [`fdsfjf`]),
+new client (6, `kim`,`iv`, 345, 095, [`fdsffjwf`,`dd`]),
+
+new client (3, `tim`,`iv`, 345, 094, [`fdsfweff`]),
+new client (8, `max`,`iv`, 345, 093, [`fdsfhgttff`,`ff`]),
+new client (9, `petro`,`iv`, 345, 098, [`fdsfff`]),
+new client (12, `ted`,`iv`, 345, 098),
