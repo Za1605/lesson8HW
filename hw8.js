@@ -72,41 +72,231 @@ console.log(ArrUs5);
 // order (поле є масивом зі списком товарів)
 //створити пустий масив, наповнити його 10 об'єктами Client
 
-function client(id, name, surname, email, phone, order) {
-    this.id = id;
-    this.surname = surname;
-    this.email = email;
-    this.phone = phone;
-    this.order = order;
+class Client {
+    constructor(id, name, surname, email, phone, order) {
+
+        this.id = id;
+        this.name= name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.order = order;
+    }
 }
 
-let ArrUs7 = [
-    new client (8, `petro`,`iv`, 45, 093, ['fgfdgdf','fgg','fgfdfgfgdfg','gfg', 'gfg','fgfg']),
-    new client (5, `ivan`,`ivod`, 345, 098, [`fdsfffff`,`ghgh`,`ghghgjhgjh`,`fgf`,`sdf`]),
-    new client (2, `petro`,`iv`, 345, 097, [`fdsfffgbg`,`th`,`fggg`]),
-    new client (4, `stepan`,`iv`, 345, 096, [`fdsfgtfg`, `bn`,`bhuggfg`]),
-    new client (7, `petro`,`iv`, 345, 099, [`fdsfjf`]),
-    new client (6, `kim`,`iv`, 345, 095, [`fdsffjwf`,`dd`]),
+const clients = [
+    new Client (1, `petrivka`,`iv`, '45', '093', ['fgfdgdf','fgg','fgfdfgfgdfg','gfg', 'gfg','fgfg']),
+    new Client(2, `ivan`,`ivod`, '45', '098', [`fdsfffff`,`ghgh`,`ghghgjhgjh`,`fgf`,`sdf`]),
+    new Client(3, `petro`,`iv`, '345', '097', [`fdsfffgbg`,`th`,`fggg`]),
+    new Client(4, `stepan`,`iv`, '345', '096', [`fdsfgtfg`, `bn`,`bhuggfg`]),
+    new Client(5, `petro`,`iv`, '345', '099', [`fdsfjf`]),
+    new Client(6, `kim`,`ivo`, '349,' ,'095', [`fdsffjwf`,`dd`]),
 
-    new client (3, `tim`,`iv`, 345, 094, [`fdsfweff`]),
-    new client (8, `max`,`iv`, 345, 093, [`fdsfhgttff`,`ff`]),
-    new client (9, `petro`,`iv`, 345, 098, [`fdsfff`]),
-    new client (12, `ted`,`iv`, 345, 098),
+    new Client(7, `tim`,`iv`, '345', '094', [`fdsfweff`]),
+    new Client(8, `max`,`iv`, '345', '93', [`fdsfhgttff`,`ff`]),
+    new Client(9, `petro`,`iv`, '345', '098', [`fdsfff`]),
+    new Client(10, `ted`,`iv`, '345', '098'),
 ];
-console.log(ArrUs7);
+
 
 // Взяти масив (Client [] з попереднього завдання).
 //Відсортувати його по кількості товарів в полі order по зростанню. (sort)
 
-let ArrUs8 = [
-    new client (8, `petro`,`iv`, 45, 093, ['fgfdgdf','fgg','fgfdfgfgdfg','gfg', 'gfg','fgfg']),
-new client (5, `ivan`,`ivod`, 345, 098, [`fdsfffff`,`ghgh`,`ghghgjhgjh`,`fgf`,`sdf`]),
-new client (2, `petro`,`iv`, 345, 097, [`fdsfffgbg`,`th`,`fggg`]),
-new client (4, `stepan`,`iv`, 345, 096, [`fdsfgtfg`, `bn`,`bhuggfg`]),
-new client (7, `petro`,`iv`, 345, 099, [`fdsfjf`]),
-new client (6, `kim`,`iv`, 345, 095, [`fdsffjwf`,`dd`]),
+//console.log(clients.sort((client1, client2) => client1.order.length - client2.order.length));
+let boxon = clients.sort((a,b) => {
+    return a.order.length - b.order.length;
+});
+console.log(boxon);
 
-new client (3, `tim`,`iv`, 345, 094, [`fdsfweff`]),
-new client (8, `max`,`iv`, 345, 093, [`fdsfhgttff`,`ff`]),
-new client (9, `petro`,`iv`, 345, 098, [`fdsfff`]),
-new client (12, `ted`,`iv`, 345, 098),
+// Створити функцію конструктор яка дозволяє створювати об'єкти car, з властивостями модель,
+// виробник, рік випуску, максимальна швидкість, об'єм двигуна. додати в об'єкт функції:
+// drive () - яка виводить в консоль `їдемо зі швидкістю ${максимальна швидкість} на годину`
+//info () - яка виводить всю інформацію про автомобіль в форматі `назва поля - значення поля`
+//increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
+//changeYear (newValue) - змінює рік випуску на значення newValue
+//addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів,
+// і додає його в поточний об'єкт car
+
+
+function Car (model, produse, year, maxspeed, volume) {
+    this.model = model;
+    this.produse = produse;
+    this.year = year;
+    this.maxspeed = maxspeed;
+    this.volume = volume;
+    this.drive = [];
+
+
+    this.drivers = function (Car) {
+        console.log('їдемо зі швидкістю ${this.maxspeed} на годину')
+    };
+
+    this.info = function () {
+        console.log(`model:${this.model}`);
+        console.log(`produse:${this.produse}`);
+        console.log(`year:${this.year}`);
+        console.log(`maxspeed:${this.maxspeed}`);
+        console.log(`volume:${this.volume}`);
+        console.log(`drive:${JSON.stringify(this.drive)}`);
+    }
+
+
+    this.increeaseMaxSpeed = function (newSpeed) {
+        newSpeed = this.maxspeed + newSpeed;
+        this.maxspeed = newSpeed < 0 ? 0 : newSpeed
+    };
+
+    this.changeYear = function (newValue) {
+        this.year = newValue
+    };
+
+    this.addDriver = function (name, age) {
+        this.drivers.push(new drive(name, age));
+    };
+};
+
+function Driver(name, age) {
+    this.name = name;
+    this.age = age;
+};
+
+const car11 = new Car('volvo', 'x60', '2020', 300, 3);
+
+car11.drive()
+car11.info();
+car11.increeaseMaxSpeed(300)
+car11.info()
+car11.changeYear(2023)
+car11.info()
+car11.addDriver('Dima', 45)
+car11.addDriver('Max',  36)
+car11.info()
+
+// - (Те саме, тільки через клас)
+// Створити клас який дозволяє створювати об'єкти car, з властивостями модель, виробник, рік випуску, максимальна швидкість, об'єм двигуна. додати в об'єкт функції:
+// -- drive () - яка виводить в консоль `їдемо зі швидкістю ${максимальна швидкість} на годину`
+// -- info () - яка виводить всю інформацію про автомобіль в форматі `назва поля - значення поля`
+// -- increaseMaxSpeed (newSpeed) - яка підвищує значення максимальної швидкості на значення newSpeed
+// -- changeYear (newValue) - змінює рік випуску на значення newValue
+// -- addDriver (driver) - приймає об'єкт який "водій" з довільним набором полів, і додає
+//його в поточний об'єкт car
+
+
+//class Car (model, produse, year, maxspeed, volume) {
+    this.model = model;
+    this.produse =produse;
+    this.year =year;
+    this.maxspeed = maxspeed;
+    this.volume = volume;
+    this.drive =[];
+//}
+
+//drive (){
+    console.log(`їдемо зі швидкістю ${this.maxspeed} на годину`)
+//};
+
+info = function () {
+    console.log(`model:${this.model}`);
+    console.log(`produse:${this.produse}`);
+    console.log(`year:${this.year}`);
+    console.log(`maxspeed:${this.maxspeed}`);
+    console.log(`volume:${this.volume}`);
+    console.log(`drive:${JSON.stringify(this.drive)}`);
+}
+
+
+//increeaseMaxSpeed (newSpeed) {
+    newSpeed = this.maxspeed + newSpeed;
+    this.maxspeed = newSpeed < 0? 0:newSpeed;
+//}
+
+//changeYear (newValue) {
+    this.year = newValue;
+//}
+
+//addDriver  (name, age) {
+    this.drive.push(new drive(name,age));
+//}
+
+//const car11 = new Car('volvo', 'x60', '2020', 300, 3);
+
+car11.drive()
+car11.increeaseMaxSpeed(300)
+car11.changeYear(2023)
+car11.addDriver('Dima', 45)
+car11.addDriver('Max',  36)
+
+
+
+// -створити класс/функцію конструктор попелюшка з полями ім'я, вік, розмір ноги.
+// Створити масив з 10 попелюшок.
+
+// Сторити об'єкт класу "принц" за допомоги класу який має поля ім'я, вік, туфелька яку він знайшов.
+//     За допомоги циклу знайти яка попелюшка повинна бути з принцом.
+//     Додатково, знайти необхідну попелюшку за допомоги функції масиву find та відповідного колбеку
+
+class person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+const ArrPop = [
+    new Popelushka('Sveta', 23, 33),
+    new Popelushka('Alla', 28, 36),
+    new Popelushka('Irina', 22, 41),
+    new Popelushka('Macha', 44, 40),
+    new Popelushka('Kris', 67, 39),
+    new Popelushka('Yana', 54, 35),
+    new Popelushka('Sofa', 12, 36),
+    new Popelushka('Juliya', 82, 37),
+    new Popelushka('Tanya', 41, 42),
+    new Popelushka('Yana', 44, 42),
+];
+class Popelushka extends person{
+    constructor(name, age, foot) {
+        super(name, age);
+        this.foot = foot;
+    }
+}
+
+class Princ extends person{
+    constructor(name, age, size) {
+        super(name, age);
+        this.size = size;
+    }
+
+
+
+findPrincess1(arr)
+{
+    for (const princess of arr) {
+        if (princess.foot === this.size) {
+            return princess;
+        }
+    }
+}
+
+
+
+findPrincess2(arr){
+    return arr
+        .sort((a,b)=>a.age- b.age)
+        .find((princess) => princess.foot === this.size);
+}
+}
+const princ = new princ('Petro', 44, 42);
+console.log(Princ.findPrincess1(ArrPop));
+console.log(Princ.findPrincess2(ArrPop));
+
+
+
+
+
+
+
+
+
+
+
+
